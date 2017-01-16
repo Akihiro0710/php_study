@@ -5,12 +5,12 @@
   <title>PHP study</title>
 </head>
 <body>
-  <form action="" method="GET">
+  <form action="" method="POST">
     <input type="text" name="val">
     <input type="submit">
   </form>
 <?php
-$val = isset($_GET['val']) ? $_GET['val'] : "";
+$val = isset($_POST['val']) ? $_POST['val'] : "";
 echo "<p>{$val}</p>";
 ?>
 </body>
