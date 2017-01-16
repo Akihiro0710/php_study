@@ -5,13 +5,11 @@
   <title>PHP study</title>
 </head>
 <body>
+  <?php $val = isset($_POST['val']) ? $_POST['val'] : "";?>
   <form action="" method="POST">
-    <input type="text" name="val">
-    <input type="submit">
+    <input type="text" name="val" value="<?php echo $val;?>">
+    <input type="submit" name="submit" value="submit">
   </form>
-<?php
-$val = isset($_POST['val']) ? $_POST['val'] : "";
-echo "<p>{$val}</p>";
-?>
+<?php echo "<p>{$val}</p>";?>
 </body>
 </html>
