@@ -3,19 +3,16 @@ $_SESSION = [];
 ?>
 <?php echo $val;?>
 <?php
-require dirname(__FILE__)."/../config/db_config.php";
-try{
-  $pdo = new PDO(PDO_DSN, USERNAME, PASSWORD);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-}catch(PDOException $e){
-  $pdo = null;
+require dirname(__FILE__)."/../functions/db_function.php";
+$pdo = db_connect();
+if($pdo == null){
   echo "<p>データベースの接続に失敗しました</p>";
+}else{
+  $stmt = $pdo -> prepare("INSERT INTO data (val) VALUES (:val)");
+  $stmt -> bindParam(':val', $val, PDO::PARAM_STR);
+  $stmt -> execute();
+  $pdo = null;
 }
-$stmt = $pdo -> prepare("INSERT INTO data (val) VALUES (:val)");
-$stmt -> bindParam(':val', $val, PDO::PARAM_STR);
-$stmt -> execute();
-$pdo = null;
 session_destroy();
 ?>
 <div>
