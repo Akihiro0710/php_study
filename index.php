@@ -5,7 +5,7 @@
   <title>PHP study</title>
 </head>
 <body>
-  <form action="" method="GET">
+  <form action="" method="POST">
     <input type="text" name="val">
     <input type="submit">
   </form>
